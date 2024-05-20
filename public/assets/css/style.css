@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Sedan+SC&display=swap');
+
+:root{
+    --displayfont: "Sedan SC", serif;
+    --font: "Noto Sans", sans-serif;
+    --redcol: #C40C0C;
+    --orangecol: #FF6500;
+    --ligorangecol: #FF8A08;
+    --yellowcol: #FFC100;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: var(--font);
+    font-size: 16px;
+}
+
+
+/*Start Left Navbar*/
+
+
+.lines1,.lines2,.lines3{
+    width: 25px;
+    height: 3px;
+    margin: 6px;
+}
+
+.corssxs .lines1{
+    transform: rotate(45deg) translate(3px);
+}
+
+.sidebars{
+    min-height: 100vh;
+    background: #070A52;
+    color: #fff;
+
+}
+.brandname{
+    width: 100%;
+    font-family: var(--displayfont);
+    font-size: 31px;
+    background: linear-gradient(45deg,var(--redcol),var(--ligorangecol));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    border-bottom: 1px solid var(--yellowcol);
+}
+
+.sidebarlinks{
+    opacity: 0.8;
+
+    transition: all .3s;
+}
+.sidebarlinks:hover{
+    background-color: rgba(196, 12, 12, 0.60);
+    border-radius: 3px;
+    opacity: 1;
+}
+.sidebarlinks.current{
+    background-color: var(--redcol);
+    border-radius: 3px;
+    opacity: 1;
+}
+
+.footerprofcons{
+    width: 89%;
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+
+}
+.footerprofcons p{
+    color: #c4c4c4;
+}
+.profilecons{
+    border-top: 1px solid var(--yellowcol);
+    padding-top: 15px;
+}
+.profileimgs{
+    width: 38px;
+    height: 38px;
+
+    border-radius: 100%;
+}
+/*End Left Navbar*/
+
+.topbars{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+}
