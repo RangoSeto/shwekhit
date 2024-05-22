@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardsController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatusesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('/statuses', StatusesController::class);
+    Route::get('/statusesfetchalldatas',[StatusesController::class,'fetchalldatas'])->name("statuses.fetchalldatas");
+
+    Route::resource('/items',ItemsController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -19,9 +19,9 @@
                             <li class="brandname mt-2 pb-2">Shwe Khit</li>
                         </div>
 
-                        <li class="nav-item py-2 px-3 mt-3 sidebarlinks current"><i class="far fa-dolly-flatbed"></i> Items</li>
-
-                        <li class="nav-item py-2 px-3 mt-2 sidebarlinks">Transitions</li>
+                        <a href="#" class="nav-item nav-link text-white py-2 px-3 mt-3 sidebarlinks current"><i class="far fa-box-full"></i> Items</a>
+                        <a href="{{route('statuses.index')}}" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks ">Statuses</a>
+                        <a href="#" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks">Transitions</a>
 
                         <li class="mt-2 pb-2 footerprofcons">
                             <p class="small text-center">&copy; copyright <span id="getyear"></span></p>
@@ -38,7 +38,7 @@
                 <!--                    End Left Sidebar-->
 
                 <!--                    Start Top Sidebar-->
-                <div class="col-lg-10 col-md-9 ms-auto fixed-top">
+                <div class="col-lg-10 col-md-9 ms-auto fixed-top" style="background: #fff;">
                     <div class="row">
 
                         <div class="col-md-12 topbars pt-3 pb-2">

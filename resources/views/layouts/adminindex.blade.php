@@ -4,17 +4,15 @@
 
 
 <!--Start Pannel Section-->
-<section>
+<section class="fixed-top z-0" style="height: 100vh;overflow-y: scroll;background: #f4f4f4;">
     <div class="container-fluid">
         <div class="row">
 
             <div class="col-lg-10 col-md-9 ms-auto">
-                <div class="row pt-4 mt-5">
-                    <div class="col-md-12">
+                <div class="row pt-3 pannelcons">
 
-                        @yield('content')
+                    @yield('content')
 
-                    </div>
                 </div>
             </div>
 
