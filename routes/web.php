@@ -33,6 +33,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::resource('/items',ItemsController::class);
+    Route::get('/itemsfetchalldatas',[ItemsController::class,'fetchalldatas'])->name("items.fetchalldatas");
+    Route::get('/itemsstatus',[ItemsController::class,'changestatus'])->name('items.changestatuses');
+
+
+
     Route::resource('/statuses', StatusesController::class);
     Route::get('/statusesfetchalldatas',[StatusesController::class,'fetchalldatas'])->name("statuses.fetchalldatas");
 
