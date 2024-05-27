@@ -5,12 +5,17 @@
 
             <form id="createform" action="" method="POST">
                 <div class="row align-items-end">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-5 form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Enter Type Name" />
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-5 form-group">
+                        <label for="itemscount">Total items count</label>
+                        <input type="number" name="itemscount" id="itemscount" class="form-control form-control-sm" placeholder="Enter Count" />
+                    </div>
+
+                    <div class="col-md-2">
                         <button type="reset" class="btn btn-sm btn-secondary me-2">Cancel</button>
                         <button type="submit" class="btn btn-sm btn-primary">Create</button>
                     </div>
@@ -27,6 +32,7 @@
                 <thead class="">
                     <th>No</th>
                     <th>Name</th>
+                    <th>Items Count</th>
                     <th>By</th>
                     <th>Created At</th>
                     <th>Updated At</th>
@@ -71,14 +77,21 @@
                 <div class="modal-body">
                     <form id="formaction" action="">
                         <div class="row align-items-end" >
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="editname" class="form-control form-control-sm" value="{{old('name')}}" />
                                 </div>
                             </div>
 
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="itemscount">Total items count</label>
+                                    <input type="number" name="itemscount" id="edititemscount" class="form-control form-control-sm" value="{{old('itemscount')}}" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-end mt-4">
                                 <div class="">
                                     <button type="button" class="btn btn-sm btn-secondary ">Cancel</button>
                                     <button type="submit" class="btn btn-sm btn-primary ">Update</button>
@@ -153,11 +166,12 @@
                                 <tr>
                                     <td>${++idx}</td>
                                     <td>${data.name}</td>
+                                    <td>${data.itemscount}</td>
                                     <td>${data.user.name}</td>
                                     <td>${data.formatcreated}</td>
                                     <td>${data.formatupdated}</td>
                                     <td>
-                                        <a href="javascript:void(0);" class="me-2 edit-btns" data-bs-toggle="modal" data-bs-target="#editmodal" data-id="${data.id}" data-name="${data.name}"><i class="fas fa-edit"></i></a>
+                                        <a href="javascript:void(0);" class="me-2 edit-btns" data-bs-toggle="modal" data-bs-target="#editmodal" data-id="${data.id}" data-name="${data.name}" data-itemscount="${data.itemscount}"><i class="fas fa-edit"></i></a>
                                         <a href="javascript:void(0);" class="text-danger delete-btns" data-id="${data.id}" data-name="${data.name}"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
@@ -179,6 +193,7 @@
             // Start Edit Btn
             $(document).on('click',".edit-btns",function (){
                 $("#editname").val($(this).data('name'));
+                $("#edititemscount").val($(this).data('itemscount'));
 
                 let getid = $(this).data('id');
                 $("#formaction").attr('data-id',getid);
@@ -197,6 +212,7 @@
                     dataType:"json",
                     data: $(this).serialize(),
                     success: function (response){
+                        console.log(response);
                         if(response){
                             Swal.fire({
                                 position: "top-end",

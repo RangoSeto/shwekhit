@@ -14,6 +14,7 @@ class Type extends Model
     protected $fillable = [
         'name',
         'slug',
+        'itemscount',
         'user_id'
     ];
 

@@ -50,7 +50,7 @@ class StatusesController extends Controller
     {
 
         $this->validate($request,[
-            'name'=>'required|unique:statuses,name'
+            'name'=>'required|unique:statuses,name,'.$id
         ]);
 
         $user = Auth::user();

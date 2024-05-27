@@ -16,11 +16,17 @@ class TypesController extends Controller
         return view('types.index');
     }
 
+    public function show(string $id)
+    {
+
+    }
+
     public function store(Request $request)
     {
 
         $this->validate($request,[
-            'name'=>'required|unique:types,name'
+            'name'=>'required|unique:types,name',
+            'itemscount'=>'required'
         ]);
 
         $user = Auth::user();
@@ -31,6 +37,7 @@ class TypesController extends Controller
                 $type = new Type();
                 $type->name = $request['name'];
                 $type->slug = $request['name'];
+                $type->itemscount = $request['itemscount'];
                 $type->user_id = $user_id;
                 $type->save();
 
@@ -50,8 +57,10 @@ class TypesController extends Controller
     {
 
         $this->validate($request,[
-            'name'=>'required|unique:types,name'
+            'name'=>'required|unique:types,name,'.$id,
+            'itemscount'=>'required'
         ]);
+
 
         $user = Auth::user();
         $user_id = $user->id;
@@ -61,6 +70,7 @@ class TypesController extends Controller
                 $type = Type::findOrFail($id);
                 $type->name = $request['name'];
                 $type->slug = $request['name'];
+                $type->itemscount = $request['itemscount'];
                 $type->user_id = $user_id;
                 $type->save();
 
