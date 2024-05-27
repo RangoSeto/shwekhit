@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardsController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusesController;
+use App\Http\Controllers\TypesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,10 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/itemsfetchalldatas',[ItemsController::class,'fetchalldatas'])->name("items.fetchalldatas");
     Route::get('/itemsstatus',[ItemsController::class,'changestatus'])->name('items.changestatuses');
 
-
-
     Route::resource('/statuses', StatusesController::class);
     Route::get('/statusesfetchalldatas',[StatusesController::class,'fetchalldatas'])->name("statuses.fetchalldatas");
+
+    Route::resource('/types', TypesController::class);
+    Route::get('/typesfetchalldatas',[TypesController::class,'fetchalldatas'])->name("types.fetchalldatas");
 
     Route::resource('/items',ItemsController::class);
 });
