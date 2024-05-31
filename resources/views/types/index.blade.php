@@ -217,7 +217,7 @@
                             Swal.fire({
                                 position: "top-end",
                                 icon: "success",
-                                title: "Created Successfully",
+                                title: "Updated Successfully",
                                 showConfirmButton: false,
                                 timer: 1500
                             });
