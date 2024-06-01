@@ -23,7 +23,9 @@
                         <a href="{{route('statuses.index')}}" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks ">Statuses</a>
                         <a href="{{route('types.index')}}" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks ">Types</a>
                         <a href="{{route('stockins.index')}}" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks ">Stock In</a>
-                        <a href="#" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks">Transitions</a>
+                        <a href="{{route('paymenttypes.index')}}" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks ">Payment Types</a>
+
+                        <a href="{{route('transitions.index')}}" class="nav-item nav-link text-white py-2 px-3 mt-2 sidebarlinks">Transitions</a>
 
                         <li class="mt-2 pb-2 footerprofcons">
                             <p class="small text-center">&copy; copyright <span id="getyear"></span></p>
