@@ -29,9 +29,16 @@
 
                         <li class="mt-2 pb-2 footerprofcons">
                             <p class="small text-center">&copy; copyright <span id="getyear"></span></p>
-                            <div class="profilecons">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFcaKmEWp9HygDkzP-Auoi2B4FGB9xu_otnAgk6Qw3vw&s" alt="image" class="me-2 profileimgs" />
-                                <span>Admin</span>
+                            <div class="dropup">
+                                <div class="profilecons dropdown-toggle" data-bs-toggle="dropdown">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFcaKmEWp9HygDkzP-Auoi2B4FGB9xu_otnAgk6Qw3vw&s" alt="image" class="me-2 profileimgs" />
+                                    <span>Admin</span>
+                                </div>
+
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item" onclick="document.getElementById('logoutform').submit();">Logout</li>
+                                    <form action="{{route('logout')}}" method="POST" id="logoutform" >@csrf</form>
+                                </ul>
                             </div>
                         </li>
 
