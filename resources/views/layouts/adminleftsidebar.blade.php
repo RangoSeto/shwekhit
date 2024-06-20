@@ -17,7 +17,7 @@
                         <ul class="navbar-nav flex-column">
 
                             <div class="w-100 text-center">
-                                <li class="brandname mt-2 pb-2">Shwe Khit</li>
+                                <li class="brandname mt-2 pb-2"><a href="{{route('items.index')}}">Shwe Khit</a></li>
                             </div>
 
                             <li class="nav-item px-2 mt-3 "><a href="{{route('items.index')}}" class="nav-link text-white sidebarlinks {{ Str::startsWith(Route::currentRouteName(), 'items') ? 'current' : ''}}"><i class="far fa-box-full"></i> Items</a></li>
