@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Status;
 use App\Models\Stockin;
 use App\Models\Type;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ class StockinsController extends Controller
         $data['items'] = Item::all();
         $data['statuses'] = Status::whereIn('id',[3,4])->get();
         $data['types'] = Type::all();
+        $data['gettoday'] = Carbon::now()->format('Y-m-d');
 
         return view('stockins.index',$data);
     }
@@ -42,7 +44,6 @@ class StockinsController extends Controller
             'item_id'=>'required'
         ]);
 
-
         try{
 
             $item = Item::findOrFail($request['item_id']);
@@ -56,12 +57,13 @@ class StockinsController extends Controller
 
                 $stockins = new Stockin();
                 $stockins->item_id = $request['item_id'];
-                $stockins->pocount = $request['pocount'];
-                $stockins->pharcount = $request['pharcount'];
+                $stockins->pocount = $request['pocount'] ?? 0;
+                $stockins->pharcount = $request['pharcount'] ?? 0;
                 $stockins->countbyeach = $counteach;
                 $stockins->price = $totalprice;
                 $stockins->status_id = $request['status_id'];
                 $stockins->user_id = Auth::id();
+                $stockins->created_at = $request['created_at'];
                 $stockins->save();
 
                 return response()->json(["status"=>"success","data"=>$stockins]);
@@ -120,6 +122,7 @@ class StockinsController extends Controller
                 $stockins->price = $totalprice;
                 $stockins->status_id = $request['status_id'];
                 $stockins->user_id = Auth::id();
+                $stockins->created_at = $request['created_at'];
                 $stockins->save();
 
                 return response()->json(["status"=>"success","data"=>$stockins]);

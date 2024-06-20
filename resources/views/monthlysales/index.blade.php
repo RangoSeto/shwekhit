@@ -1,53 +1,29 @@
 @extends('layouts.adminindex')
 @section('content')
     <div class="container-fluid">
-        <div class="col-md-12 ">
 
-            <form id="createform" action="" method="">
-                <div class="row align-items-end">
-                    <div class="col-lg-5 col-md-6 form-group mb-2">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Enter Payment Name" />
-                    </div>
+        <div class="row d-flex">
+            <div class="col-md-6">
 
-                    <div class="col-lg-5 col-md-6 mb-2">
-                        <label for="status_id">Status</label>
-                        <select name="status_id" id="status_id" class="form-select form-select-sm">
-                            @foreach($statuses as $status)
-                                <option value="{{$status->id}}">{{$status->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                @foreach($stockins as $stockin)
+                    <a href="{{ route('monthlysales.show', ['date'=>Carbon\Carbon::create($stockin->year,$stockin->month)->format('F Y')]) }}" class="nav-link pointer bg-white p-4 mt-3" data-date="{{Carbon\Carbon::create($stockin->year,$stockin->month)->format('F Y')}}">
+                        <div class="fs-5 fw-semibold">
+                            <span>Monthly Sales for</span> <span class="fst-italic text-primary">{{ Carbon\Carbon::create($stockin->year,$stockin->month)->format('F Y')}}</span> Date.
+                        </div>
+                    </a>
+                @endforeach
 
-                    <div class="col-lg-2 col-md-6 text-end mb-2">
-                        <button type="reset" class="btn btn-sm btn-secondary me-2">Cancel</button>
-                        <button type="submit" class="btn btn-sm btn-primary">Create</button>
-                    </div>
-                </div>
-            </form>
+            </div>
 
-        </div>
-
-        <hr>
-
-        <div class="col-md-12">
-
-            <table id="mytable" class="table table-hover border">
-                <thead class="">
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>By</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-
-
-                </tbody>
-            </table>
-
+            <div class="col-md-6">
+                @foreach($stockins as $stockin)
+                    <a href="{{ route('monthlysales.transition', ['date'=>Carbon\Carbon::create($stockin->year,$stockin->month)->format('F Y')]) }}" class="nav-link pointer bg-white p-4 mt-3" data-date="{{Carbon\Carbon::create($stockin->year,$stockin->month)->format('F Y')}}">
+                        <div class="fs-5 fw-semibold">
+                            <span>Bank Transfer for</span> <span class="fst-italic text-primary">{{ Carbon\Carbon::create($stockin->year,$stockin->month)->format('F Y')}}</span> Date.
+                        </div>
+                    </a>
+                @endforeach
+            </div>
         </div>
 
     </div>
@@ -56,50 +32,7 @@
 @endsection
 
 @section('modal')
-    {{--    START MODEL AREA--}}
-    {{--        Start Edit Model--}}
-    <div id="editmodal" class="modal fade">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
 
-                <div class="modal-header">
-                    <h6>Edit Form</h6>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <form id="formaction" action="">
-                        <div class="row align-items-end" >
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" name="name" id="editname" class="form-control form-control-sm" value="{{old('name')}}" />
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="status_id">Status</label>
-                                <select name="status_id" id="editstatus_id" class="form-select form-select-sm">
-                                    @foreach($statuses as $status)
-                                        <option value="{{$status->id}}">{{$status->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-md-12 text-end pt-3">
-                                <div class="">
-                                    <button type="submit" class="btn btn-sm btn-primary ">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    {{--        End Edit Model--}}
-    {{--    END MODEL AREA--}}
 @endsection
 
 @section('js')
@@ -121,7 +54,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url:"{{ route('paymenttypes.store')  }}",
+                    url:"{{ route('items.store')  }}",
                     type:"POST",
                     dataType:"json",
                     data:$("#createform").serialize(),
@@ -149,7 +82,7 @@
             // Start fetch all datas
             function fetchalldatas(){
                 $.ajax({
-                    url: "{{ route('paymenttypes.fetchalldatas') }}",
+                    url: "{{ route('items.fetchalldatas') }}",
                     type: "GET",
                     dataType: "json",
                     success:function(response){
@@ -161,6 +94,7 @@
                                 <tr>
                                     <td>${++idx}</td>
                                     <td>${data.name}</td>
+                                    <td>${data.price}</td>
                                     <td>
                                         <div class="form-check form-switch">
                                             <input type="checkbox" id="status-btns" class="form-check-input" ${data.status_id === 3 ? 'checked' : ''} value="${data.status_id}" data-id="${data.id}"/>
@@ -185,7 +119,7 @@
                     }
                 });
             }
-            fetchalldatas();
+            // fetchalldatas();
             // End Fetch all datas
 
 
@@ -207,12 +141,11 @@
                 const getid = $("#formaction").attr('data-id');
 
                 $.ajax({
-                    url: `/paymenttypes/${getid}`,
+                    url: `/items/${getid}`,
                     type: "PUT",
                     dataType:"json",
                     data: $(this).serialize(),
                     success: function (response){
-                        console.log(response);
                         if(response){
                             Swal.fire({
                                 position: "top-end",
@@ -248,7 +181,7 @@
                     if (result.isConfirmed) {
 
                         $.ajax({
-                            url: `paymenttypes/${getid}`,
+                            url: `items/${getid}`,
                             type: "DELETE",
                             dataType: "json",
                             data: {"id":getid},
@@ -282,7 +215,7 @@
                 let getstatus = $(this).prop('checked') ? 3 : 4;
 
                 $.ajax({
-                    url:`/paymenttypesstatus`,
+                    url:`/itemsstatus`,
                     type: "GET",
                     dataType: "json",
                     data: {"id":getid,"status_id":getstatus},

@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\Item;
 use App\Models\Status;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,7 +30,7 @@ class StockinsResource extends JsonResource
             'created_at'=>$this->created_at->format('d M Y'),
             'updated_at'=>$this->updated_at->format('d M Y'),
             'user'=>User::where('id',$this->user_id)->select(['id','name'])->first(),
-            'item'=>Item::where('id',$this->item_id)->select(['id','name'])->first()
+            'item'=>Item::where('id',$this->item_id)->select(['id','name'])->first(),
         ];
     }
 }

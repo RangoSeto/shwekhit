@@ -17,21 +17,21 @@
                         </div>
 
 
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-lg-2 col-md-6">
                             <div class="input-group">
-                                <input type="number" name="pocount" id="pocount" class="form-control form-control-sm" />
+                                <input type="number" name="pocount" id="pocount" class="form-control form-control-sm"  />
                                 <span class="input-group-text">{{$types[0]->name}}</span>
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-lg-2 col-md-6">
                             <div class="input-group">
                                 <input type="number" name="pharcount" id="pharcount" class="form-control form-control-sm" />
                                 <span class="input-group-text">{{$types[1]->name}}</span>
                             </div>
                         </div>
 
-                        <div class="col-lg-1 col-md-6 mb-2">
+                        <div class="col-lg-1 col-md-6">
                             <label for="status_id">Status</label>
                             <select name="status_id" id="status_id" class="form-select form-select-sm">
 
@@ -39,6 +39,12 @@
                                     <option value="{{$status->id}}">{{$status->name}}</option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <div class="input-group">
+                                <input type="date" name="created_at" id="created_at" class="form-control form-control-sm" value="{{ old('created_at',$gettoday) }}" />
+                            </div>
                         </div>
 
                         <div class="col-lg-2 col-md-6 text-end mb-2">
@@ -124,7 +130,7 @@
                             </div>
 
 
-                            <div class="col-lg-6 col-md-6 mb-2">
+                            <div class="col-lg-6 col-md-6 my-2">
                                 <label for="status_id">Status</label>
                                 <select name="status_id" id="editstatus_id" class="form-select form-select-sm">
                                     @foreach($statuses as $status)
@@ -133,9 +139,15 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-6 text-end mt-3">
+                            <div class="col-lg-6 col-md-6 my-2">
+                                <div class="input-group">
+                                    <input type="date" name="created_at" id="editcreated_at" class="form-control form-control-sm" value="{{ old('created_at',$gettoday) }}" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12 text-end my-3 ">
                                 <div class="">
-                                    <button type="button" class="btn btn-sm btn-secondary ">Cancel</button>
                                     <button type="submit" class="btn btn-sm btn-primary ">Update</button>
                                 </div>
                             </div>
@@ -221,7 +233,7 @@
                                     <td>${data.created_at}</td>
                                     <td>${data.updated_at}</td>
                                     <td>
-                                        <a href="javascript:void(0);" class="me-2 edit-btns" data-bs-toggle="modal" data-bs-target="#editmodal" data-id="${data.id}" data-item_id="${data.item_id}" data-itemname="${data.item.name}" data-pocount="${data.pocount}" data-pharcount="${data.pharcount}"><i class="fas fa-edit"></i></a>
+                                        <a href="javascript:void(0);" class="me-2 edit-btns" data-bs-toggle="modal" data-bs-target="#editmodal" data-id="${data.id}" data-item_id="${data.item_id}" data-itemname="${data.item.name}" data-pocount="${data.pocount}" data-pharcount="${data.pharcount}" data-created_at="${data.created_at}"><i class="fas fa-edit"></i></a>
                                         <a href="javascript:void(0);" class="text-danger delete-btns" data-id="${data.id}" data-name="${data.name}"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
@@ -245,6 +257,8 @@
                 $("#edititem_id").val($(this).data('item_id'));
                 $("#editpocount").val($(this).data('pocount'));
                 $("#editpharcount").val($(this).data('pharcount'));
+                $("#editcreated_at").val($(this).data('created_at'));
+                console.log($(this).data('created_at'));
 
                 let getid = $(this).data('id');
                 $("#formaction").attr('data-id',getid);

@@ -93,7 +93,6 @@
 
                             <div class="col-md-12 text-end mt-4">
                                 <div class="">
-                                    <button type="button" class="btn btn-sm btn-secondary ">Cancel</button>
                                     <button type="submit" class="btn btn-sm btn-primary ">Update</button>
                                 </div>
                             </div>

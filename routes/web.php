@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardsController;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\MonthlysalesController;
 use App\Http\Controllers\PaymenttypesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusesController;
@@ -40,6 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('/items',ItemsController::class);
     Route::get('/itemsfetchalldatas',[ItemsController::class,'fetchalldatas'])->name("items.fetchalldatas");
     Route::get('/itemsstatus',[ItemsController::class,'changestatus'])->name('items.changestatuses');
+
+    Route::get('/monthlysales',[MonthlysalesController::class,'index'])->name('monthlysales.index');
+    Route::get('/monthlysales/show',[MonthlysalesController::class,'show'])->name('monthlysales.show');
+    Route::get('/monthlysales/transitions',[MonthlysalesController::class,'transitions'])->name('monthlysales.transition');
+    Route::get('/monthlysales/fetchalldatas',[MonthlysalesController::class,'fetchalldatas'])->name('monthlysales.fetchalldatas');
+
 
     Route::resource('/paymenttypes',PaymenttypesController::class);
     Route::get('/paymenttypesfetchalldatas',[PaymenttypesController::class,'fetchalldatas'])->name("paymenttypes.fetchalldatas");

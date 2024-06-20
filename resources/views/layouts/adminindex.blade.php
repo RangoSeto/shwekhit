@@ -9,7 +9,7 @@
         <div class="row">
 
             <div class="col-lg-10 col-md-9 ms-auto">
-                <div class="row pt-3 pannelcons">
+                <div class="row pt-3 pannelcons ms-auto">
 
                     @yield('content')
 

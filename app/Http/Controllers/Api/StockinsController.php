@@ -24,23 +24,23 @@ class StockinsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'item_id'=>'required'
-        ]);
-
-        $counteach = $request['phocount']*200+$request['pharcount']*100;
-
-        $totalprice =
-
-        $stockins = new Stockin();
-        $stockins->item_id = $request['item_id'];
-        $stockins->phocount = $request['phocount'];
-        $stockins->pharcount = $request['pharcount'];
-        $stockins->countbyeach = $counteach;
-        $stockins->price = $request['price'];
-        $stockins->save();
-
-        return new StockinsResource($stockins);
+//        $this->validate($request,[
+//            'item_id'=>'required'
+//        ]);
+//
+//        $counteach = $request['phocount']*200+$request['pharcount']*100;
+//
+//        $totalprice =
+//
+//        $stockins = new Stockin();
+//        $stockins->item_id = $request['item_id'];
+//        $stockins->phocount = $request['phocount'];
+//        $stockins->pharcount = $request['pharcount'];
+//        $stockins->countbyeach = $counteach;
+//        $stockins->price = $request['price'];
+//        $stockins->save();
+//
+//        return new StockinsResource($stockins);
 
     }
 
@@ -58,23 +58,6 @@ class StockinsController extends Controller
     public function update(Request $request, string $id)
     {
 
-        $this->validate($request,[
-            'item_id'=>'required'
-        ]);
-
-        $counteach = $request['phocount']*200+$request['pharcount']*100;
-
-        $totalprice =
-
-        $stockins = Stockin::findOrFail($id);
-        $stockins->item_id = $request['item_id'];
-        $stockins->phocount = $request['phocount'];
-        $stockins->pharcount = $request['pharcount'];
-        $stockins->countbyeach = $counteach;
-        $stockins->price = $request['price'];
-        $stockins->save();
-
-        return new StockinsResource($stockins);
     }
 
     /**
@@ -89,7 +72,8 @@ class StockinsController extends Controller
 
     public function fetchalldatas()
     {
-        $stockins = Stockin::all();
+        $stockins = Stockin::orderBy('created_at','desc')->get();
+
 
         return StockinsResource::collection($stockins);
     }
